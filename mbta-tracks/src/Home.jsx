@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Card,
   CardContent,
   Grid,
@@ -45,38 +46,52 @@ const Home = () => {
 
   const formatDestinations = (destinations) => {
     const style = {
-      display: 'inline-flex'
+      display: 'inline-flex',
+      verticalAlign: 'center',
+      alignItems: 'center'
+    }
+
+    const iconStyle = {
+      paddingLeft: '.5em',
+      paddingRight: '.5em',
+      fontSize: '.7em !important'
     }
 
     return (
-      <React.Fragment style={style}>
+      <Box style={style}>
         <Typography>
           {destinations[0]}
         </Typography>
-        <SyncAltIcon ></SyncAltIcon>
+        <SyncAltIcon style={iconStyle}></SyncAltIcon>
         <Typography>
           {destinations[1]}
         </Typography>
-      </React.Fragment>
+      </Box>
     );
   }
 
   const FullPageLineInfo = ({line}) => {
     const style = {
       backgroundColor: '#' + line.attributes.color,
-      minHeight: '50vh',
-      padding: '2em',
+      minHeight: '100vh',
+      padding: '2.5em',
       color: 'white'
+    }
+
+    const buttonStyle = {
+      color: 'white',
+      borderColor: 'white'
     }
 
     return (
       <Box style={style}>
-        <Typography variant='h3'>
+        <Typography variant='h4'>
           {line.attributes.long_name}
         </Typography>
-        <Typography >
-          {formatDestinations(line.attributes.direction_destinations)}
-        </Typography>
+        <Box>{formatDestinations(line.attributes.direction_destinations)}</Box>
+        <Button variant='outlined' style={buttonStyle}>
+          Learn more about the {line.id} line
+        </Button>
       </Box>
     );
   }
@@ -84,7 +99,7 @@ const Home = () => {
   return (
     <Grid>
       {subwayLines.map((line) => (
-        <FullPageLineInfo line={line} />
+        <FullPageLineInfo key={line.id} line={line} />
       ))}
     </Grid>
   );
