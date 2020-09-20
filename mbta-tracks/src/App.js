@@ -1,22 +1,13 @@
+import { Container } from '@material-ui/core'
 import React, { useState, useEffect } from "react";
-
-const fetch = require('node-fetch');
+import Home from './Home'
 
 const App = () => {
-
-  useEffect(() => {
-    fetch('https://api-v3.mbta.com/routes?filter[type]=1')
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-
-    })
-    .catch(err => console.log(err))
-
-  }, []);
-
-
-  return <h1>Hello</h1>;
+  return (
+    <React.Fragment>
+      <Home />
+    </React.Fragment>
+  );
 
 }
 
